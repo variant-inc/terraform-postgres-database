@@ -2,9 +2,9 @@
 
 Terraform module which creates Database & User.
 
-## Usage
-
 ## Examples
+
+Refer [examples](examples)
 
 ## Contributing
 
@@ -43,7 +43,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_create_database"></a> [create\_database](#input\_create\_database) | Creates Database. If false, this creates a read only user | `bool` | `true` | no |
+| <a name="input_create_database"></a> [create\_database](#input\_create\_database) | Creates Database. If `false`, this creates a read only user | `bool` | `true` | no |
 | <a name="input_database_name"></a> [database\_name](#input\_database\_name) | Name of the database | `string` | n/a | yes |
 | <a name="input_extensions"></a> [extensions](#input\_extensions) | Array of extensions | `list(string)` | `[]` | no |
 | <a name="input_role_name"></a> [role\_name](#input\_role\_name) | Name of the role | `string` | n/a | yes |

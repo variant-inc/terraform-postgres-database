@@ -1,6 +1,6 @@
 variable "create_database" {
   type        = bool
-  description = "Creates Database. If false, this creates a read only user"
+  description = "Creates Database. If `false`, this creates a read only user"
   default     = true
 }
 

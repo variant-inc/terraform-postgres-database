@@ -9,7 +9,7 @@ resource "postgresql_role" "my_role" {
   name            = var.role_name
   login           = true
   password        = random_password.role_password.result
-  create_database = true
+  create_database = var.create_database
 }
 
 resource "postgresql_database" "my_db" {
