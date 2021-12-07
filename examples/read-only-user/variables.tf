@@ -12,3 +12,8 @@ variable "role_name" {
   type        = string
   description = "Name of the role"
 }
+
+variable "domain" {
+  type        = string
+  description = "Domain for the RDS"
+}
