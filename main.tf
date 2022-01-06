@@ -14,7 +14,7 @@ resource "postgresql_role" "my_role" {
 
 resource "postgresql_database" "my_db" {
   provider = postgresql.this
-  count    = var.create_database ? 0 : 1
+  count    = var.create_database ? 1 : 0
 
   name  = var.database_name
   owner = postgresql_role.my_role.name
