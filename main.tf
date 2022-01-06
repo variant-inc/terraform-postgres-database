@@ -14,10 +14,9 @@ resource "postgresql_role" "my_role" {
 
 resource "postgresql_database" "my_db" {
   provider = postgresql.this
-  count    = var.create_database ? 0 : 1
+  count    = var.create_database ? 1 : 0
 
   name  = var.database_name
-  owner = postgresql_role.my_role.name
 }
 
 resource "postgresql_grant" "read_all_tables" {
@@ -37,7 +36,7 @@ resource "postgresql_grant" "read_all_tables" {
 
 resource "postgresql_extension" "my_extension" {
   provider = postgresql.this
-  for_each = var.create_database ? {} : toset(var.extensions)
+  for_each = var.create_database ? toset([]) : toset(var.extensions)
 
   depends_on = [
     postgresql_database.my_db

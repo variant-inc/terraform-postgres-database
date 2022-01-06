@@ -2,6 +2,12 @@
 
 Terraform module which creates Database & User.
 
+## Usage
+
+```terraform
+  source = "github.com/variant-inc/terraform-postgres-database?ref=master"
+```
+
 ## Examples
 
 Refer [examples](examples)

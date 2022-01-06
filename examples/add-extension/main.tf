@@ -9,6 +9,10 @@ locals {
 module "postgres_role" {
   source = "../../"
 
+  providers = {
+    postgresql.this = postgresql
+  }
+
   create_database = true
   database_name   = var.database_name
   role_name       = var.role_name
