@@ -16,7 +16,7 @@ resource "postgresql_database" "my_db" {
   provider = postgresql.this
   count    = var.create_database ? 1 : 0
 
-  name  = var.database_name
+  name = var.database_name
 }
 
 resource "postgresql_grant" "read_all_tables" {
