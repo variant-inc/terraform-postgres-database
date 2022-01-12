@@ -1,5 +1,5 @@
 provider "postgresql" {
-  host            = "${var.cluster_name}.rds.${var.domain}"
+  host            = local.creds["host"]
   username        = local.creds["username"]
   password        = local.creds["password"]
   connect_timeout = 30
