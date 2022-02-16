@@ -13,3 +13,8 @@ output "password" {
   sensitive   = true
   description = "Password of the User"
 }
+
+output "database_id" {
+  value       = postgresql_database.my_db[*].id
+  description = "Database Id"
+}
