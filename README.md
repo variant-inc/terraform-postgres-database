@@ -59,6 +59,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_database"></a> [database](#output\_database) | Name of the Database |
+| <a name="output_database_id"></a> [database\_id](#output\_database\_id) | Database Id |
 | <a name="output_password"></a> [password](#output\_password) | Password of the User |
 | <a name="output_user"></a> [user](#output\_user) | Name of the User |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
