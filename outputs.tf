@@ -15,6 +15,6 @@ output "password" {
 }
 
 output "database_id" {
-  value       = postgresql_database.my_db[*].id
+  value       = postgresql_database.my_db[0].id
   description = "Database Id"
 }
