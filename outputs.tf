@@ -13,3 +13,8 @@ output "password" {
   sensitive   = true
   description = "Password of the User"
 }
+
+output "secret_id" {
+  value       = aws_secretsmanager_secret.database_credentials.id
+  description = "ID of Secret in SecretsManager"
+}

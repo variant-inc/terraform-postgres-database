@@ -10,7 +10,7 @@ resource "postgresql_role" "my_role" {
   login           = true
   password        = random_password.role_password.result
   create_database = var.create_database
-  roles           = ["rds_iam"]
+  #roles           = ["rds_iam"]
 }
 
 resource "postgresql_database" "my_db" {
@@ -47,44 +47,33 @@ resource "postgresql_extension" "my_extension" {
   database = var.database_name
 }
 
-# Rotating secret START #
 data "aws_caller_identity" "current" {}
 
 data "aws_region" "current" {}
 
 resource "aws_secretsmanager_secret" "database_credentials" {
-  #Will Default:
-  #kms_key_id  = var.kms_key_id
-
-  description = "${var.database_name} database secret key."
-  name = "${var.database_name}-postgres-secret"
+  description = "${var.database_name} postgres database secret key."
+  name        = "postgres-secret-${var.database_name}"
 }
 
 resource "aws_secretsmanager_secret_rotation" "database_credentials" {
-  rotation_lambda_arn = "arn:aws:lambda:${data.aws-region.current}:${data.aws_caller_identity.current}:function:rds_key_rotation"
+  rotation_lambda_arn = "arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:${var.cluster_name}-rds-key-rotation"
   secret_id           = aws_secretsmanager_secret.database_credentials.id
 
   rotation_rules {
-    automatically_after_days = 30 #var.rotation_interval
+    automatically_after_days = 30
   }
 }
 
 resource "aws_secretsmanager_secret_version" "database_credentials" {
-  secret_id     = aws_secretsmanager_secret.database_credentials.id
+  secret_id = aws_secretsmanager_secret.database_credentials.id
   secret_string = jsonencode({
-    "password" = random_password.role_password.result # Password will be rotated immediately upon creation
-
+    # Password will be rotated immediately upon creation
+    "password" = random_password.role_password.result
+    "dbname"   = var.database_name
+    "username" = var.role_name
+    "host"     = var.host
+    "engine"   = "postgres"
   })
 
-  lifecycle {
-    ignore_changes = [
-      # Ignore changes to the credential info. After creation, any changes to
-      # non-password fields should be made through the console to avoid issues
-      # with Terraform resetting the password on the secret but not updating the
-      # password on RDS.
-      secret_string,
-    ]
-  }
 }
-
-# Rotating Secret END #

@@ -19,3 +19,13 @@ variable "extensions" {
   description = "Array of extensions"
   default     = []
 }
+
+variable "cluster_name" {
+  type        = string
+  description = "Name of the cluster"
+}
+
+variable "host" {
+  type        = string
+  description = "Host of database"
+}
