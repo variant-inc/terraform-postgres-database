@@ -18,3 +18,8 @@ output "secret_id" {
   value       = aws_secretsmanager_secret.database_credentials.id
   description = "ID of Secret in SecretsManager"
 }
+
+output "secret_name" {
+  value       = "postgres-secret-${var.database_name}"
+  description = "Name of Secret in SecretsManager"
+}
