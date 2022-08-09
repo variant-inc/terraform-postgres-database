@@ -69,5 +69,6 @@ No modules.
 | <a name="output_database"></a> [database](#output\_database) | Name of the Database |
 | <a name="output_password"></a> [password](#output\_password) | Password of the User |
 | <a name="output_secret_id"></a> [secret\_id](#output\_secret\_id) | ID of Secret in SecretsManager |
+| <a name="output_secret_name"></a> [secret\_name](#output\_secret\_name) | Name of Secret in SecretsManager |
 | <a name="output_user"></a> [user](#output\_user) | Name of the User |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
