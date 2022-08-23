@@ -61,7 +61,7 @@ resource "aws_secretsmanager_secret_rotation" "database_credentials" {
   secret_id           = aws_secretsmanager_secret.database_credentials.id
 
   rotation_rules {
-    automatically_after_days = 30
+    automatically_after_days = 90
   }
 }
 
