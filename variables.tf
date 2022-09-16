@@ -9,6 +9,12 @@ variable "database_name" {
   description = "Name of the database"
 }
 
+variable "reference" {
+  type        = string
+  description = "Reference string for forming environment variable in DX"
+  default = ""
+}
+
 variable "role_name" {
   type        = string
   description = "Name of the role"

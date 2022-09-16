@@ -23,3 +23,8 @@ output "secret_name" {
   value       = "postgres-secret-${replace(var.database_name, "_", "-")}"
   description = "Name of Secret in SecretsManager"
 }
+
+output "reference" {
+  value       = var.reference
+  description = "Reference string for forming environment variable in DX"
+}
