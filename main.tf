@@ -53,7 +53,7 @@ data "aws_region" "current" {}
 
 resource "aws_secretsmanager_secret" "database_credentials" {
   description = "${var.database_name} postgres database secret key."
-  name        = "postgres-secret-${var.database_name}"
+  name        = "postgres-secret-${replace(var.database_name, "_", "-")}"
 }
 
 resource "aws_secretsmanager_secret_rotation" "database_credentials" {
