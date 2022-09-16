@@ -20,6 +20,6 @@ output "secret_id" {
 }
 
 output "secret_name" {
-  value       = "postgres-secret-${var.database_name}"
+  value       = "postgres-secret-${replace(var.database_name, "_", "-")}"
   description = "Name of Secret in SecretsManager"
 }
