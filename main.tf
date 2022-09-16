@@ -75,5 +75,4 @@ resource "aws_secretsmanager_secret_version" "database_credentials" {
     "host"     = var.host
     "engine"   = "postgres"
   })
-
 }
