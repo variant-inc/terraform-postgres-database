@@ -12,7 +12,7 @@ module "postgres_role" {
   providers = {
     postgresql.this = postgresql
   }
-
+  host            = local.creds["host"]
   create_database = false # keep this as false to create read-only user
   database_name   = var.database_name
   role_name       = var.role_name
