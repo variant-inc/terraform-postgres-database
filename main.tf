@@ -37,7 +37,7 @@ resource "postgresql_grant" "read_all_tables" {
 
 resource "postgresql_extension" "my_extension" {
   provider = postgresql.this
-  for_each = var.create_database ? toset([]) : toset(var.extensions)
+  for_each = var.create_database ? toset(var.extensions) : toset([])
 
   depends_on = [
     postgresql_database.my_db
