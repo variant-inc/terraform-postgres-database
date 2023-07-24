@@ -6,6 +6,10 @@ resource "random_password" "role_password" {
 resource "postgresql_role" "my_role" {
   provider = postgresql.this
 
+  depends_on = [
+    postgresql_database.my_db
+  ]
+
   name            = var.role_name
   login           = true
   password        = random_password.role_password.result
@@ -17,17 +21,17 @@ resource "postgresql_database" "my_db" {
   provider = postgresql.this
   count    = var.create_database ? 1 : 0
 
-  depends_on = [
-    postgresql_role.my_role
-  ]
-
   name = var.database_name
 }
 
 resource "postgresql_grant" "read_all_tables" {
   provider = postgresql.this
 
-  database    = postgresql_database.my_db.name
+  depends_on = [
+    postgresql_database.my_db
+  ]
+
+  database    = var.database_name
   object_type = "table"
   privileges  = var.create_database ? ["ALL"] : ["SELECT"]
   role        = postgresql_role.my_role.name
@@ -39,8 +43,12 @@ resource "postgresql_extension" "my_extension" {
   provider = postgresql.this
   for_each = var.create_database ? toset(var.extensions) : toset([])
 
+  depends_on = [
+    postgresql_database.my_db
+  ]
+
   name     = each.key
-  database = postgresql_database.my_db.name
+  database = var.database_name
 }
 
 data "aws_caller_identity" "current" {}
