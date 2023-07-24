@@ -60,6 +60,7 @@ No modules.
 | <a name="input_database_name"></a> [database\_name](#input\_database\_name) | Name of the database | `string` | n/a | yes |
 | <a name="input_extensions"></a> [extensions](#input\_extensions) | Array of extensions | `list(string)` | `[]` | no |
 | <a name="input_host"></a> [host](#input\_host) | Host of database | `string` | n/a | yes |
+| <a name="input_reference"></a> [reference](#input\_reference) | Reference string for forming environment variable in DX | `string` | `""` | no |
 | <a name="input_role_name"></a> [role\_name](#input\_role\_name) | Name of the role | `string` | n/a | yes |
 
 ## Outputs
@@ -68,6 +69,7 @@ No modules.
 |------|-------------|
 | <a name="output_database"></a> [database](#output\_database) | Name of the Database |
 | <a name="output_password"></a> [password](#output\_password) | Password of the User |
+| <a name="output_reference"></a> [reference](#output\_reference) | Reference string for forming environment variable in DX |
 | <a name="output_secret_id"></a> [secret\_id](#output\_secret\_id) | ID of Secret in SecretsManager |
 | <a name="output_secret_name"></a> [secret\_name](#output\_secret\_name) | Name of Secret in SecretsManager |
 | <a name="output_user"></a> [user](#output\_user) | Name of the User |

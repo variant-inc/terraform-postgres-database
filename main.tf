@@ -17,17 +17,17 @@ resource "postgresql_database" "my_db" {
   provider = postgresql.this
   count    = var.create_database ? 1 : 0
 
+  depends_on = [
+    postgresql_role.my_role
+  ]
+
   name = var.database_name
 }
 
 resource "postgresql_grant" "read_all_tables" {
   provider = postgresql.this
 
-  depends_on = [
-    postgresql_database.my_db
-  ]
-
-  database    = var.database_name
+  database    = postgresql_database.my_db.name
   object_type = "table"
   privileges  = var.create_database ? ["ALL"] : ["SELECT"]
   role        = postgresql_role.my_role.name
@@ -39,12 +39,8 @@ resource "postgresql_extension" "my_extension" {
   provider = postgresql.this
   for_each = var.create_database ? toset(var.extensions) : toset([])
 
-  depends_on = [
-    postgresql_database.my_db
-  ]
-
   name     = each.key
-  database = var.database_name
+  database = postgresql_database.my_db.name
 }
 
 data "aws_caller_identity" "current" {}
@@ -52,8 +48,9 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 resource "aws_secretsmanager_secret" "database_credentials" {
-  description = "${var.database_name} postgres database secret key."
-  name        = "postgres-secret-${replace(var.database_name, "_", "-")}"
+  description             = "${var.database_name} postgres database secret key."
+  name                    = "postgres-secret-${replace(var.database_name, "_", "-")}"
+  recovery_window_in_days = 0
 }
 
 resource "aws_secretsmanager_secret_rotation" "database_credentials" {
