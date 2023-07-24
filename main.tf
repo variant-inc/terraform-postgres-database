@@ -52,8 +52,9 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 resource "aws_secretsmanager_secret" "database_credentials" {
-  description = "${var.database_name} postgres database secret key."
-  name        = "postgres-secret-${replace(var.database_name, "_", "-")}"
+  description             = "${var.database_name} postgres database secret key."
+  name                    = "postgres-secret-${replace(var.database_name, "_", "-")}"
+  recovery_window_in_days = 0
 }
 
 resource "aws_secretsmanager_secret_rotation" "database_credentials" {
