@@ -1,0 +1,21 @@
+---
+# yamllint disable rule:line-length
+name: Release
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  Release:
+    permissions:
+      id-token: write
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup
+        uses: variant-inc/actions-setup@v2
+      - name: Create Release Action
+        uses: variant-inc/actions-collection/create-release-tag@v2
