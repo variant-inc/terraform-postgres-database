@@ -11,6 +11,7 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   Release:
     permissions:
+      id-token: write
       contents: write
     runs-on: ubuntu-latest
     steps:
