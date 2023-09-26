@@ -14,27 +14,16 @@ Refer [examples](examples)
 
 ## Contributing
 
+<!-- markdownlint-disable line-length no-inline-html-->
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=3.66.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0.0, <6.0.0 |
 | <a name="requirement_postgresql"></a> [postgresql](#requirement\_postgresql) | >=1.14.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | 3.1.0 |
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >=3.66.0 |
-| <a name="provider_postgresql.this"></a> [postgresql.this](#provider\_postgresql.this) | >=1.14.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.1.0 |
-
-## Modules
-
-No modules.
+| <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.1 |
 
 ## Resources
 
@@ -47,7 +36,7 @@ No modules.
 | [postgresql_extension.my_extension](https://registry.terraform.io/providers/cyrilgdn/postgresql/latest/docs/resources/extension) | resource |
 | [postgresql_grant.read_all_tables](https://registry.terraform.io/providers/cyrilgdn/postgresql/latest/docs/resources/grant) | resource |
 | [postgresql_role.my_role](https://registry.terraform.io/providers/cyrilgdn/postgresql/latest/docs/resources/role) | resource |
-| [random_password.role_password](https://registry.terraform.io/providers/hashicorp/random/3.1.0/docs/resources/password) | resource |
+| [random_password.role_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 

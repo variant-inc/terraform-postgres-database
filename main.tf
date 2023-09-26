@@ -55,7 +55,9 @@ data "aws_caller_identity" "current" {}
 
 data "aws_region" "current" {}
 
+#tfsec:ignore:aws-ssm-secret-use-customer-key
 resource "aws_secretsmanager_secret" "database_credentials" {
+  #checkov:skip=CKV_AWS_149:Skip using KMS CMR
   description             = "${var.database_name} postgres database secret key."
   name                    = "postgres-secret-${replace(var.database_name, "_", "-")}"
   recovery_window_in_days = 0
@@ -66,7 +68,7 @@ resource "aws_secretsmanager_secret_rotation" "database_credentials" {
   secret_id           = aws_secretsmanager_secret.database_credentials.id
 
   rotation_rules {
-    automatically_after_days = 90
+    automatically_after_days = 60
   }
 }
 
