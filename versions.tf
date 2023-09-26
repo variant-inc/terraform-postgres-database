@@ -7,15 +7,13 @@ terraform {
 
       configuration_aliases = [postgresql.this]
     }
-
     aws = {
       source  = "hashicorp/aws"
-      version = ">=3.66.0"
+      version = ">= 4.0.0, <6.0.0"
     }
-
     random = {
       source  = "hashicorp/random"
-      version = "3.1.0"
+      version = ">= 3.1"
     }
   }
 }

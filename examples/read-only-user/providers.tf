@@ -7,3 +7,4 @@ provider "postgresql" {
 }
 
 provider "aws" {}
+provider "random" {}
