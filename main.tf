@@ -82,4 +82,8 @@ resource "aws_secretsmanager_secret_version" "database_credentials" {
     "host"     = var.host
     "engine"   = "postgres"
   })
+
+  lifecycle {
+    ignore_changes = [secret_string]
+  }
 }
