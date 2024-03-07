@@ -35,3 +35,8 @@ variable "host" {
   type        = string
   description = "Host of database"
 }
+
+variable "email" {
+  type        = string
+  description = "Email of user"
+}

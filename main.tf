@@ -81,6 +81,7 @@ resource "aws_secretsmanager_secret_version" "database_credentials" {
     "username" = var.role_name
     "host"     = var.host
     "engine"   = "postgres"
+    "email"    = var.email
   })
 
   lifecycle {
