@@ -67,9 +67,13 @@ resource "aws_secretsmanager_secret_rotation" "database_credentials" {
   rotation_lambda_arn = "arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:${var.cluster_name}-rds-key-rotation"
   secret_id           = aws_secretsmanager_secret.database_credentials.id
 
+  rotate_immediately = false
   rotation_rules {
     automatically_after_days = 60
   }
+  depends_on = [
+    aws_secretsmanager_secret_version.database_credentials
+  ]
 }
 
 resource "aws_secretsmanager_secret_version" "database_credentials" {
@@ -81,9 +85,21 @@ resource "aws_secretsmanager_secret_version" "database_credentials" {
     "username" = var.role_name
     "host"     = var.host
     "engine"   = "postgres"
+    "email"    = var.email
   })
-
   lifecycle {
     ignore_changes = [secret_string]
   }
+}
+
+resource "aws_ssm_parameter" "permissions" {
+  #checkov:skip=CKV_AWS_337:Skip using KMS CMR
+  name        = "postgres-${var.database_name}-${var.role_name}"
+  description = "Postgres permissons for ${var.database_name} database and ${var.role_name} role"
+  type        = "SecureString"
+  value = jsonencode({
+    privileges = var.create_database ? ["ALL"] : ["SELECT"],
+    email      = var.email
+  })
+
 }

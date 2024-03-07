@@ -14,6 +14,11 @@ output "password" {
   description = "Password of the User"
 }
 
+output "email" {
+  value       = var.email
+  description = "Email specified for group"
+}
+
 output "secret_id" {
   value       = aws_secretsmanager_secret.database_credentials.id
   description = "ID of Secret in SecretsManager"
