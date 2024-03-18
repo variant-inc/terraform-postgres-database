@@ -38,5 +38,6 @@ variable "host" {
 
 variable "email" {
   type        = string
+  default     = "cloudops@drivevariant.com"
   description = "Email of user"
 }
