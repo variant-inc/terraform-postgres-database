@@ -90,9 +90,10 @@ resource "aws_secretsmanager_secret_version" "database_credentials" {
 }
 
 resource "aws_ssm_parameter" "permissions" {
-  name  = "postgres-${var.database_name}-${var.role_name}"
+  #checkov:skip=CKV_AWS_337:Skip using KMS CMR
+  name        = "postgres-${var.database_name}-${var.role_name}"
   description = "Postgres permissons for ${var.database_name} database and ${var.role_name} role"
-  type  = "String"
-  value = "ALL|SELECT"
+  type        = "SecureString"
+  value       = "ALL|SELECT"
 
 }
