@@ -36,4 +36,4 @@ jobs:
           curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
 
           pip3 install checkov
-      - uses: pre-commit/action@v3.0.0
+      - uses: pre-commit/action@v3.0.1
