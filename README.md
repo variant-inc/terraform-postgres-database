@@ -2,6 +2,11 @@
 
 Terraform module which creates Database & User.
 
+## v2 changes
+
+- Changes for new rotation lambda
+  - new field: email
+
 ## Usage
 
 ```terraform
